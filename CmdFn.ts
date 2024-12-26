@@ -2,6 +2,8 @@ import type { CmdResult } from './CmdResult.ts';
 
 /**
  The `CmdFn` class helps define a chunk of code that can be intermixed with `Cmd` commands. It lets us plug bits of custom TypeScript behavior into sequences of commands that are mainly shell commands, and use them in the same way, and get the same structured output.
+
+ It's not actually a function, though, so perhaps the name still kinda sucks FIXME BROOOO~
  */
 export abstract class CmdFn
 {

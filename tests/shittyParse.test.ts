@@ -1,16 +1,16 @@
 import { assertEquals } from '@std/assert';
-import { shittyParse } from './shittyParse.ts';
+import { shittyParse } from '../shittyParse.ts';
 
 Deno.test('shittyParse - git commit with emoji and quoted quotes', () =>
 {
   const input = `git commit -m "🤖 chore: initial commit of new 'sub-repo' ass-bagger"`;
   const result = shittyParse(input);
   assertEquals(result.command, 'git');
-  assertEquals(result.args, ['commit', '-m', '🤖 chore: initial commit of new \'sub-repo\' ass-bagger']);
+  assertEquals(result.args, ['commit', '-m', "🤖 chore: initial commit of new 'sub-repo' ass-bagger"]);
 
   const argsOnlyResult = shittyParse(input, true);
   assertEquals(argsOnlyResult.command, '');
-  assertEquals(argsOnlyResult.args, ['git', 'commit', '-m', '🤖 chore: initial commit of new \'sub-repo\' ass-bagger']);
+  assertEquals(argsOnlyResult.args, ['git', 'commit', '-m', "🤖 chore: initial commit of new 'sub-repo' ass-bagger"]);
 });
 
 Deno.test('shittyParse - empty input', () =>

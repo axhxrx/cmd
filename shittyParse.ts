@@ -1,10 +1,11 @@
 /**
- The `shittyParse` function takes a string and splits it into a command and an array of arguments, attempting to do something like what most shells would do to parse user input on the command line. 
- 
+ The `shittyParse` function takes a string and splits it into a command and an array of arguments, attempting to do something like what most shells would do to parse user input on the command line.
+
  As hopefully conveyed by the name, it's shitty and just exists as a hack to cover the common convenience cases. But that's 100% of our cases.
 
  @param input The input string to parse.
- @param argsOnly If `true` then `shittyParse` will treat the entire string as the arguments, assuming that the command is not contained in the string. (So like, when you are just trying to parse a string containing maybe-quoted arguments, and you are going to provid them to a command later.)
+
+ @param argsOnly If `true` then `shittyParse` will treat the entire string as the arguments, assuming that the command is not contained in the string. (E.g., when you are just trying to parse a string containing maybe-quoted arguments, and you are going to provide them to a command later, like if you had `-laR /foo /bar` and you were going to pass those args to the `ls` command.)
  */
 export function shittyParse(input: string, argsOnly = false): { command: string; args: string[] }
 {

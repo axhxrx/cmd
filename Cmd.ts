@@ -1,10 +1,13 @@
 import { AbstractCmd } from './AbstractCmd.ts';
+import { CmdCd } from './cd.ts';
 import type { CmdDesc } from './CmdDesc.ts';
 import type { CmdResult } from './CmdResult.ts';
 import { CmdSeq } from './CmdSeq.ts';
+import { CmdReadTextFile } from './readTextFile.ts';
 import { run, runCmdDesc } from './runCmd.ts';
 import { shittyParse } from './shittyParse.ts';
 import { shittySplit } from './shittySplit.ts';
+import { CmdWriteTextFile } from './writeTextFile.ts';
 
 /**
  A class for running commands, optionally with sudo, with a single result type that is easy for both humans and automatons to understand. Only Linux or POSIX-like systems are supported.
@@ -84,5 +87,29 @@ export class Cmd extends AbstractCmd implements Required<CmdDesc>
     }
 
     return new CmdSeq({ commands });
+  }
+
+  /**
+   Returns a new `Cmd` object that changes the current working directory for the current process when run.
+   */
+  static cd(path: string): CmdCd
+  {
+    return new CmdCd(path);
+  }
+
+  /**
+   Returns a new `Cmd` object that reads the content of a text file when run.
+   */
+  static readTextFile(filePath: string): CmdReadTextFile
+  {
+    return new CmdReadTextFile(filePath);
+  }
+
+  /**
+   Returns a new `Cmd` object that writes the content of a text file when run.
+   */
+  static writeTextFile(filePath: string, text: string): CmdWriteTextFile
+  {
+    return new CmdWriteTextFile(filePath, text);
   }
 }

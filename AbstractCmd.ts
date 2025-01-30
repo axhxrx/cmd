@@ -10,6 +10,11 @@ export abstract class AbstractCmd
 {
   abstract description: string;
 
+  toString(): string
+  {
+    return this.description || "'whatThe";
+  }
+
   /**
    The fundamental method for running a command. All subclasses must implement this.
    */

@@ -1,5 +1,5 @@
 import { AbstractCmd } from './AbstractCmd.ts';
-import { CmdResult } from './CmdResult.ts';
+import type { CmdResult } from './CmdResult.ts';
 
 /**
  Change directory for the current process. This command just calls through to `Deno.chdir`, while maintaining the same results interface as `Cmd`.

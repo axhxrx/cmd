@@ -1,6 +1,6 @@
 {
   "name": "@axhxrx/cmd",
-  "version": "0.1.2",
+  "version": "0.1.5",
   "exports": "./mod.ts",
   "license": "MIT",
   "imports": {
@@ -9,7 +9,7 @@
     "@std/expect": "jsr:@std/expect@^1.0.9",
     "@std/fs": "jsr:@std/fs@^1.0.6",
     "@std/path": "jsr:@std/path@^1.0.8",
-    "@std/testing": "jsr:@std/testing@^1.0.6",
+    "@std/testing": "jsr:@std/testing@^1.0.6"
   },
   "publish": {
     "exclude": ["tests"]

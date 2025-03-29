@@ -63,7 +63,8 @@ Deno.test('Run a command and return a fully-populated result', async () =>
   assertEquals(sudoMode, 'none');
   assertEquals(cwd, Deno.cwd());
   assertEquals(description, 'echo f.u. world 🖕🌏');
-  assertEquals(outputs, []);
+  assertEquals(outputs.length, 1);
+  assertEquals(outputs[0].type, 'stdout');
   assertEquals(stdout, 'f.u. world 🖕🌏\n');
   assertEquals(stderr, '');
   assertEquals(success, true);

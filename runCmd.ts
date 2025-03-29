@@ -152,9 +152,6 @@ export const runCmdDesc = async (options: CmdDesc): Promise<CmdResult> =>
     }
   })();
 
-  const stdoutBuffer = combineChunks(stdoutChunks);
-  const stderrBuffer = combineChunks(stderrChunks);
-
   let error: Error | undefined = undefined;
   let exitCode = 0;
   let success = false;
@@ -174,6 +171,10 @@ export const runCmdDesc = async (options: CmdDesc): Promise<CmdResult> =>
   // Wait until we finish reading stdout/stderr:
   await stdoutPromise;
   await stderrPromise;
+
+  // Now that all chunks have been collected, create buffers:
+  const stdoutBuffer = combineChunks(stdoutChunks);
+  const stderrBuffer = combineChunks(stderrChunks);
 
   const end = new Date();
 
@@ -205,7 +206,3 @@ export const runCmdDesc = async (options: CmdDesc): Promise<CmdResult> =>
     end,
   };
 };
-
-// const path = `/Volumes/CODE/@axhxrx/cmd/test-fixtures/subdirectory/sub sub directory with spaces in name`;
-// const res = await runCmd({ cmd: 'ls', args: [path] });
-// console.log(res);

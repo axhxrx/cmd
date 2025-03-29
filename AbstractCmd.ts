@@ -19,7 +19,7 @@ export abstract class AbstractCmd
    The fundamental method for running a command. All subclasses must implement this.
    */
   abstract run(): Promise<CmdResult>;
-  
+
   /**
    The command to be run. This should be a string that resolves to an executable command, such as `'ls'` or `'/bin/ls'`. For 'internal' commands, this is the empty string.
    */

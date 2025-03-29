@@ -1,4 +1,5 @@
 import { AbstractCmd } from './AbstractCmd.ts';
+import { CmdResult } from './CmdResult.ts';
 
 /**
  Writes UTF-8 text to a file.
@@ -11,12 +12,12 @@ export class CmdWriteTextFile extends AbstractCmd
     this.args = [filePath];
   }
 
-  get description()
+  get description(): string
   {
     return `CmdWriteTextFile: ${this.filePath}`;
   }
 
-  async run()
+  async run(): Promise<CmdResult>
   {
     const result = this.initResult();
     result.outputs.push({ type: 'info', text: `RUNNING: ${this.description}` });
@@ -51,7 +52,7 @@ export class CmdWriteTextFile extends AbstractCmd
 /**
  Writes UTF-8 text to a file. Returns a `CmdResult` object that indicates success or failure.
  */
-export const writeTextFile = (filePath: string, text: string) =>
+export const writeTextFile = (filePath: string, text: string): Promise<CmdResult> =>
 {
   const result = new CmdWriteTextFile(filePath, text);
   return result.run();

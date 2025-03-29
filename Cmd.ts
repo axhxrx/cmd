@@ -80,7 +80,7 @@ export class Cmd extends AbstractCmd implements Required<CmdDesc>
    `;
    ```
    */
-  static seq(strings: TemplateStringsArray, ...values: unknown[])
+  static seq(strings: TemplateStringsArray, ...values: unknown[]): CmdSeq
   {
     // Combine the strings and values alternately
     const command = strings.reduce(

@@ -1,4 +1,5 @@
 import { AbstractCmd } from './AbstractCmd.ts';
+import { CmdResult } from './CmdResult.ts';
 
 /**
  Change directory for the current process. This command just calls through to `Deno.chdir`, while maintaining the same results interface as `Cmd`.
@@ -12,12 +13,12 @@ export class CmdCd extends AbstractCmd
     super();
   }
 
-  get description()
+  get description(): string
   {
     return `CHANGE DIRECTORY: ${this.directoryPath}`;
   }
 
-  async run()
+  async run(): Promise<CmdResult>
   {
     const result = this.initResult();
 
@@ -41,7 +42,7 @@ export class CmdCd extends AbstractCmd
   }
 }
 
-export const cd = (directoryPath: string) =>
+export const cd = (directoryPath: string): Promise<CmdResult> =>
 {
   const result = new CmdCd(directoryPath);
   return result.run();

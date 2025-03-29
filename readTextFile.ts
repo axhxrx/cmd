@@ -1,4 +1,5 @@
 import { AbstractCmd } from './AbstractCmd.ts';
+import type { CmdResult } from './CmdResult.ts';
 
 /**
  Reads UTF-8 text from a file.
@@ -11,12 +12,12 @@ export class CmdReadTextFile extends AbstractCmd
     this.args = [filePath];
   }
 
-  get description()
+  get description(): string
   {
     return `CmdReadTextFile: ${this.filePath}`;
   }
 
-  async run()
+  async run(): Promise<CmdResult>
   {
     const result = this.initResult();
     result.outputs.push({ type: 'info', text: `RUNNING: ${this.description}` });
@@ -49,7 +50,7 @@ export class CmdReadTextFile extends AbstractCmd
 /**
  Reads UTF-8 text from a file. Returns a `CmdResult` object that indicates success or failure.
  */
-export const readTextFile = (filePath: string) =>
+export const readTextFile = (filePath: string): Promise<CmdResult> =>
 {
   const result = new CmdReadTextFile(filePath);
   return result.run();

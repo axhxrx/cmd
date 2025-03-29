@@ -51,7 +51,7 @@ export abstract class AbstractCmd
   /**
    By default, a textual summary of the command itself, and its arguments, will be printed to stdout, and then all stdout and stderr output from the underlying command will also be printed. Set `quiet` to `true` to prevent this. You can alternatively leave this undefined, and set `CmdDefaults.quiet` to change the default behavior.
    */
-  get quiet()
+  get quiet(): boolean
   {
     return typeof this._quiet === 'boolean' ? this._quiet : CmdDefaults.quiet;
   }

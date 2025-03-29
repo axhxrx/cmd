@@ -58,8 +58,11 @@ Deno.test('Abort a sequence as soon as one command fails', async () =>
   const subresult = result.results[1];
   const subresult2 = result.results[2];
 
-  assertStringIncludes(result.stderr,
-    'ls: /nonexistent-77C6B8F6-ADA9-4EC7-AC69-E5D35EE602B2: No such file or directory');
+  // Slight differences in output depending on OS, so fuzz the matching:
+  assertStringIncludes(result.stderr, 'ls:');
+  assertStringIncludes(result.stderr, '/nonexistent-77C6B8F6-ADA9-4EC7-AC69-E5D35EE602B2');
+  assertStringIncludes(result.stderr, 'o such file or directory');
+
   assertEquals(result.success, false);
   assertEquals(result.exitCode, 1);
 
@@ -69,8 +72,11 @@ Deno.test('Abort a sequence as soon as one command fails', async () =>
   assertEquals(subresult.exitCode, 0);
 
   assertStringIncludes(subresult2.stdout, '');
-  assertStringIncludes(subresult2.stderr,
-    'ls: /nonexistent-77C6B8F6-ADA9-4EC7-AC69-E5D35EE602B2: No such file or directory');
+
+  assertStringIncludes(result.stderr, 'ls:');
+  assertStringIncludes(result.stderr, '/nonexistent-77C6B8F6-ADA9-4EC7-AC69-E5D35EE602B2');
+  assertStringIncludes(result.stderr, 'o such file or directory');
+
   assertEquals(subresult2.success, false);
   assertEquals(subresult2.exitCode, 1);
 

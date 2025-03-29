@@ -1,5 +1,7 @@
 # @axhxrx/cmd
 
+_a convenience library for running shell commands, and possibly interleaving them with TypeScript code_
+
 This lib is for conveniently running (Unix-ish) shell commands, or alternatively snippets of TypeScript code, optionally with sudo, and with a consistent result format.
 
 In most cases, using `Deno.Command` directly is the more appropriate choice.
@@ -112,6 +114,8 @@ async function symlinkToUsrLocalBin(pathToExecutable: string)
 ```
 
 ## History
+
+👹 2025-03-29: release 0.1.1 — initial public release
 
 🎅 2024-12-17: bring chaos to order
 

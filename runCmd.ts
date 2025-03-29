@@ -54,6 +54,9 @@ export function run(
   }
 }
 
+/**
+ Runs a command, optionally with sudo, and returns a {@link CmdResult} object. (Only POSIX-like systems are supported, e.g. Linux and macOS.)
+ */
 export const runCmd = (cmd: AbstractCmd): Promise<CmdResult> =>
 {
   return cmd.run();

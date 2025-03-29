@@ -53,9 +53,11 @@ export class CmdSeq extends AbstractCmd implements Required<CmdDesc>
 
     for (const command of this._commands)
     {
+      // This looks dumb but avoids TS gets confused and throws error:
       const res = typeof command === 'string'
         ? await run(command)
         : await run(command);
+
       result.results.push(res);
 
       result.outputs.push(...res.outputs);

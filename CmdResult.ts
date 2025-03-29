@@ -52,7 +52,7 @@ export interface MutableCmdResult extends Readonly<Omit<CmdDesc, 'cmd'>>
   error?: Error;
 
   /**
-   The results of any subcommands that were run as part of this command. This only applies to command sequences. Contains theordered list of results of the subcommands run by the sequence. If the sequence is aborted, e.g. due to unexpected failure of a step in the sequence, this list will only contain results for the commands that were attempted to be run.
+   The results of any subcommands that were run as part of this command. This only applies to command sequences. Contains the ordered list of results of the subcommands run by the sequence. If the sequence is aborted, e.g. due to unexpected failure of a step in the sequence, this list will only contain results for the commands that were attempted to be run.
    */
   results: CmdResult[];
 

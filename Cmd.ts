@@ -69,6 +69,17 @@ export class Cmd extends AbstractCmd implements Required<CmdDesc>
 
   static runCommand = runCmdDesc;
 
+  /**
+   Creates and returns a new `CmdSeq` command sequence object, from a multiline string. Note that each line is trimmed, and each line is treated as a separate command that is executed sequentially. Execution stops if any command fails. Example:
+   ```ts
+   const sequence = Cmd.seq`
+     echo THIS SHOULD PRINT
+     ls -la ${pathToTestFixtures}
+     ls -la /nonexistent-77C6B8F6-ADA9-4EC7-AC69-E5D35EE602B2
+     echo THIS SHOULD NOT PRINT
+   `;
+   ```
+   */
   static seq(strings: TemplateStringsArray, ...values: unknown[])
   {
     // Combine the strings and values alternately

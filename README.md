@@ -4,7 +4,7 @@ This lib is for conveniently running (Unix-ish) shell commands, or alternatively
 
 In most cases, using `Deno.Command` directly is the more appropriate choice.
 
-But, if you happen to want to run Unix-ish shell commands, and perhaps arbitrarily mix in TypeScript code steps, too, and also wanta structured result output for each step — one that is easily analyzed by both humans and automatons – then your use case may align with the purpose of this library. 
+But, if you happen to want to run Unix-ish shell commands, and perhaps arbitrarily mix in TypeScript code steps, too, and also wanta structured result output for each step — one that is easily analyzed by both humans and automatons – then your use case may align with the purpose of this library.
 
 Otherwise, this may not be useful.
 
@@ -51,7 +51,7 @@ Inspect the result:
   cwd: "/Volumes/CODE/@axhxrx/cmd",
   quiet: false,
   description: "ping -c 1 axhxrx.net",
-  outputs: [],
+  outputs: [ /* removed for brevity */],
   stdout: "PING axhxrx.net (104.21.51.157): 56 data bytes\n" +
     "64 bytes from 104.21.51.157: icmp_seq=0 ttl=54 time=1.441 ms\n" +
     "\n" +
@@ -66,7 +66,7 @@ Inspect the result:
   start: 2025-01-11T10:32:45.100Z,
   end: 2025-01-11T10:32:45.123Z
 }
-> 
+>
 ```
 
 ### In code

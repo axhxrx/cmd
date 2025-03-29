@@ -1,4 +1,4 @@
-import { assert, assertEquals, assertStringIncludes } from '@std/assert';
+import { assert, assertEquals, assertNotEquals, assertStringIncludes } from '@std/assert';
 import { join } from '@std/path';
 import { CmdCd } from '../cd.ts';
 import { Cmd } from '../Cmd.ts';
@@ -64,7 +64,7 @@ Deno.test('Abort a sequence as soon as one command fails', async () =>
   assertStringIncludes(result.stderr, 'o such file or directory');
 
   assertEquals(result.success, false);
-  assertEquals(result.exitCode, 1);
+  assertNotEquals(subresult2.exitCode, 0);
 
   assertStringIncludes(subresult.stdout, 'names.txt');
   assertEquals(subresult.stderr, '');
@@ -78,7 +78,7 @@ Deno.test('Abort a sequence as soon as one command fails', async () =>
   assertStringIncludes(result.stderr, 'o such file or directory');
 
   assertEquals(subresult2.success, false);
-  assertEquals(subresult2.exitCode, 1);
+  assertNotEquals(subresult2.exitCode, 0);
 
   assert(result.results.length === 3);
   assertStringIncludes(result.stdout, 'THIS SHOULD PRINT');

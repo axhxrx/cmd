@@ -107,7 +107,7 @@ async function symlinkToUsrLocalBin(pathToExecutable: string) {
 
 ## History
 
-👹 2025-03-29: release 0.1.2 — initial public release
+👹 2025-03-29: release 0.1.3 — initial public release
 
 🎅 2024-12-17: bring chaos to order
 

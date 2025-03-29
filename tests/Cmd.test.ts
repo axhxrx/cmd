@@ -121,6 +121,20 @@ Deno.test('Run a command with sudo noPrompt (should fail if password required)',
   const dropResult = await Cmd.runCommand({ cmd: 'sudo', args: '-k' });
   assertEquals(dropResult.success, true);
 
+  // First, check if sudo requires a password
+  const checkSudo = await Cmd.runCommand({
+    cmd: 'sudo',
+    args: ['-n', 'true'], // -n means non-interactive (no password prompt)
+    quiet: true,
+  });
+
+  // If checkSudo succeeds, it means sudo doesn't require a password
+  if (checkSudo.success)
+  {
+    console.log("Skipping sudo test - sudo doesn't require a password in this environment");
+    return; // Skip the rest of the test
+  }
+
   const res = await Cmd.runCommand({ cmd: 'id', sudoMode: 'noPrompt' });
   // We expect this to fail on a system where 'sudo' requires a password.
   // If your CI environment doesn't require password for `sudo id`, then ... boom

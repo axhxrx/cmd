@@ -74,39 +74,31 @@ Inspect the result:
 ### In code
 
 ```ts
-import { Cmd } from '@axhxrx/cmd';
+import { Cmd } from "@axhxrx/cmd";
 
-const tankStatus = await Cmd.run('zpool status tank');
+const tankStatus = await Cmd.run("zpool status tank");
 
-if (!tankStatus.success)
-{
+if (!tankStatus.success) {
   sendAlert(`ZFS subsystem not working!`);
-}
-else if (!tankStatus.stdout.includes('state: ONLINE'))
-{
+} else if (!tankStatus.stdout.includes("state: ONLINE")) {
   sendAlert(`ZFS pool is not in ONLINE state!`);
 }
-
 ```
 
 With `sudo`:
 
 ```ts
-import { Cmd, CmdDesc } from '@axhxrx/cmd';
+import { Cmd, CmdDesc } from "@axhxrx/cmd";
 
 /**
  Create symlink to something in /usr/local/bin — uses `sudo` in interactive mode so user will be prompted for password if needed.
  */
-async function symlinkToUsrLocalBin(pathToExecutable: string)
-{
+async function symlinkToUsrLocalBin(pathToExecutable: string) {
   const cmd: CmdDesc = {
-    cmd: 'ln',
-    sudoMode: 'interactive',
-    args: [
-      '-s',
-      pathToExecutable,
-    ],
-    cwd: '/usr/local/bin',
+    cmd: "ln",
+    sudoMode: "interactive",
+    args: ["-s", pathToExecutable],
+    cwd: "/usr/local/bin",
   };
   const res = await Cmd.run(cmd);
   return res;
@@ -115,7 +107,7 @@ async function symlinkToUsrLocalBin(pathToExecutable: string)
 
 ## History
 
-👹 2025-03-29: release 0.1.1 — initial public release
+👹 2025-03-29: release 0.1.2 — initial public release
 
 🎅 2024-12-17: bring chaos to order
 

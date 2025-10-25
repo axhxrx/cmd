@@ -1,7 +1,7 @@
-import { AbstractCmd } from './AbstractCmd.ts';
-import type { CmdDesc } from './CmdDesc.ts';
-import type { CmdResult } from './CmdResult.ts';
-import { run } from './runCmd.ts';
+import { AbstractCmd } from "./AbstractCmd.ts";
+import type { CmdDesc } from "./CmdDesc.ts";
+import type { CmdResult } from "./CmdResult.ts";
+import { run } from "./runCmd.ts";
 
 export type AbstractCmdOptions = {
   commands: Array<string | CmdDesc | CmdSeq>;
@@ -11,22 +11,19 @@ export type AbstractCmdOptions = {
 /**
  A sequence of commands, which will be executed in order, and maintains the same interface and results format as `Cmd`.
  */
-export class CmdSeq extends AbstractCmd implements Required<CmdDesc>
-{
+export class CmdSeq extends AbstractCmd implements Required<CmdDesc> {
   private readonly _commands: Array<string | CmdDesc>;
 
   _description: string;
 
-  get description(): string
-  {
-    return this._description ?? 'SEQUENCE';
+  get description(): string {
+    return this._description ?? "SEQUENCE";
   }
 
-  constructor(options: AbstractCmdOptions)
-  {
+  constructor(options: AbstractCmdOptions) {
     super();
     this._commands = [...options.commands];
-    this._description = options.description ?? 'SEQUENCE';
+    this._description = options.description ?? "SEQUENCE";
   }
 
   /**
@@ -45,18 +42,15 @@ export class CmdSeq extends AbstractCmd implements Required<CmdDesc>
    // result.results[2].stdout === 'tres\n'
    ```
    */
-  async run(): Promise<CmdResult>
-  {
+  async run(): Promise<CmdResult> {
     const result = this.initResult();
 
-    result.outputs.push({ type: 'info', text: `RUNNING: ${this.description}` });
+    result.outputs.push({ type: "info", text: `RUNNING: ${this.description}` });
 
-    for (const command of this._commands)
-    {
+    for (const command of this._commands) {
       // This looks dumb but avoids TS gets confused and throws error:
-      const res = typeof command === 'string'
-        ? await run(command)
-        : await run(command);
+      const res =
+        typeof command === "string" ? await run(command) : await run(command);
 
       result.results.push(res);
 
@@ -64,8 +58,7 @@ export class CmdSeq extends AbstractCmd implements Required<CmdDesc>
       result.stderr += res.stderr;
       result.stdout += res.stdout;
 
-      if (!res.success)
-      {
+      if (!res.success) {
         break;
       }
     }
